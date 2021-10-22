@@ -37,10 +37,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const userRoutes = require("./app/routes/user");
-const tableRoute = require("./app/routes/facetRoutes")
+const facetRoute = require("./app/routes/facetRoutes")
 app.options('*', cors()); 
 app.use("/api/user", userRoutes);
-app.use("/api/table",tableRoute); //Gestion d'une première catégorie 'table'
+app.use("/api/facet",facetRoute); // url for facet
 
 module.exports = app;
 

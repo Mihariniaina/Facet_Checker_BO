@@ -10,12 +10,12 @@ const {Facet} = require("../models/Facet")
 
 /**
  * 
- * @param {*} req , la requête contient la catégorie souhaiter
- * @param {*} res , on renvoie la catégorie demandé
+ * @param {*} req , request contain item 
+ * @param {*} res , JSON of item/facet return
  */
 exports.getFacetByCategory = async (req, res) => {
 
-    Facet.find({category : req.param.category})
+    Facet.find({category : req.query.category})
     .then((facet) =>{
         res.status(200).json(facet);
     })
