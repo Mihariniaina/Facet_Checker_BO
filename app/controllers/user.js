@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const subscribe = require("../controllers/subscribe"); // subscribe
 const bcrypt = require("bcrypt");
+const mongoose = require("mongoose"); 
 
 exports.getUser = (req, res) => {
   User.findById({ _id: req.query.id }).then((user) => {
@@ -93,7 +94,10 @@ exports.updateUser = (req, res) => {
 };
 
 exports.SendEmail = (req, res) => {
-  User.findById({ _id: req.body.id }).then((user) => {
+  console.log(  "Id ==>" , req.body.id )
+  User.findById({ _id: mongoose.Types.ObjectId(req.body.id) }).then((user) => { 
+    console.log( "User ==>" , user )
+    console.log( user )
     bcrypt.hash(req.body.password, 10).then((hashPwd) => {
       if (user) {
         user

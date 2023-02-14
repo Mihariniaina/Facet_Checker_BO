@@ -76,7 +76,7 @@ exports.SendMail = (email, _id) => {
   let promise = new Promise((resolve, reject) => {
     let url = "http://localhost:3000/api/user/confimation";
     const info = {
-      from: '"Semwee " <mohamedelhousni702@gmail.com>', // sender address
+      from: '"Semwee " <send.mail.semwee@tsangana.com>', // sender address
       to: email, // list of receivers
       subject: "Keys of activation", // Subject line
       html: `<H2 style="color : #62efdf">Semwee</H2>
@@ -85,10 +85,22 @@ exports.SendMail = (email, _id) => {
     };
 
     let transporter = nodemailer.createTransport(
-      "smtps://mohamedelhousni702@gmail.com:1245GKjd678He@smtp.gmail.com"
+      // "smtps://mohamedelhousni702@gmail.com:1245GKjd678He@smtp.gmail.com"
+      {
+        host: "mail.tsangana.com",
+        // port: 587,
+        // secure: false,
+        secure: true,//true
+        port: 465,//465
+        auth: {
+          user: "send.mail.semwee@tsangana.com",
+          pass: "SenMail+456"
+        }
+      }
     );
     transporter.sendMail(info, (error, info) => {
       if (error) {
+        console.log( error )
         reject({ send: false });
       } else {
         resolve({ send: true });
