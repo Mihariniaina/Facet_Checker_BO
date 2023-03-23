@@ -100,6 +100,7 @@ exports.SendMail = (email, _id) => {
     );
     transporter.sendMail(info, (error, info) => {
       if (error) {
+        console.log( error )
         reject({ send: false });
       } else {
         resolve({ send: true });

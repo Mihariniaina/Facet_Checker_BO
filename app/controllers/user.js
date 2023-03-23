@@ -1,8 +1,12 @@
 const User = require("../models/User");
 const subscribe = require("../controllers/subscribe"); // subscribe
 const bcrypt = require("bcrypt");
+<<<<<<< HEAD
 const mongoose = require("mongoose");
 const nodemailer = require('nodemailer');
+=======
+const mongoose = require("mongoose"); 
+>>>>>>> 1b508a8a101177b3c014b80b338fa9d42228209a
 
 exports.getUser = (req, res) => {
   User.findById({ _id: req.query.id }).then((user) => {
@@ -95,7 +99,14 @@ exports.updateUser = (req, res) => {
 };
 
 exports.SendEmail = (req, res) => {
+<<<<<<< HEAD
   User.findById({ _id: mongoose.Types.ObjectId(req.body.id) }).then((user) => {
+=======
+  console.log(  "Id ==>" , req.body.id )
+  User.findById({ _id: mongoose.Types.ObjectId(req.body.id) }).then((user) => { 
+    console.log( "User ==>" , user )
+    console.log( user )
+>>>>>>> 1b508a8a101177b3c014b80b338fa9d42228209a
     bcrypt.hash(req.body.password, 10).then((hashPwd) => {
       if (user) {
         user
