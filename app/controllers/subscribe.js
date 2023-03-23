@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const auth = require("../AuthUtils.conf/auth");
 
 //signup
-exports.signup = (req, res) => {
+exports.signup = (req, res) => { 
   User.findOne({ email: req.body.email }).then((user) => {
     bcrypt.hash(req.body.ip, 10).then((hashIp) => {
       bcrypt.hash(req.body.password, 10).then((hashPwd) => {
@@ -76,7 +76,7 @@ exports.SendMail = (email, _id) => {
   let promise = new Promise((resolve, reject) => {
     let url = "http://localhost:3000/api/user/confimation";
     const info = {
-      from: '"Semwee " <mohamedelhousni702@gmail.com>', // sender address
+      from: '"Semwee " <no-reply@semwee.com>', // sender address
       to: email, // list of receivers
       subject: "Keys of activation", // Subject line
       html: `<H2 style="color : #62efdf">Semwee</H2>
@@ -85,7 +85,18 @@ exports.SendMail = (email, _id) => {
     };
 
     let transporter = nodemailer.createTransport(
-      "smtps://mohamedelhousni702@gmail.com:1245GKjd678He@smtp.gmail.com"
+      // "smtps://mohamedelhousni702@gmail.com:1245gkjd678he"
+      {
+        host: "no-reply@semwee.com",
+        // port: 587,
+        // secure: false,
+        secure: true,//true
+        port: 465,//465
+        auth: {
+          user: "no-reply@semwee.com",
+          pass: "56854qsDFgmmMpf5245"
+        }
+      }
     );
     transporter.sendMail(info, (error, info) => {
       if (error) {

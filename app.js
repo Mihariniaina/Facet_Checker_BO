@@ -38,9 +38,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const userRoutes = require("./app/routes/user");
 const facetRoute = require("./app/routes/facetRoutes")
+//const routesA = require('../path/to/routesA/routes.js');
+//const googleSearchRoutes = require("./app/routes/googleSearchRoutes");
+//const ipetRoutes = require("./app/routes/ipeRoute");
+
 app.options('*', cors()); 
 app.use("/api/user", userRoutes);
 app.use("/api/facet",facetRoute); // url for facet
+//app.use("/api/search",googleSearchRoutes.router); 
+//app.use("/api/ipe", ipetRoutes);
 
 module.exports = app;
 

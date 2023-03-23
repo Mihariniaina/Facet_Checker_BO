@@ -15,6 +15,9 @@ const userSchema = Schema({
   isrobot: { type: Boolean, default: false },
   same_frequency: { type: Number, default: 0 },
   frequency: { type: Number, default: 0 },
+  confirmationCode: {
+    type: Number
+  },
 });
 
 userSchema.plugin(uniqueValidator);
