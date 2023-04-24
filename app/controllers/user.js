@@ -213,7 +213,7 @@ exports.sendRequest = (req, res) => {
           
           // Define the email options
           const mailOptions = {
-            from: '"Semwee " <no-reply@semwee.com>',
+            from: '"Semwee" <send.mail.semwee@tsangana.com>',
             to: email,
             subject: 'Confirmation code for resetting your password',
             text: `Your confirmation code is: ${confirmationCode}`
@@ -283,7 +283,7 @@ exports.sendRequest = (req, res) => {
             user.password = hashPwd;
             user.confirmationCode = null;
             user.save();
-
+            
             res.json(user);
 
           
